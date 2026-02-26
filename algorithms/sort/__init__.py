@@ -16,3 +16,6 @@ from .shell_sort import *
 from .radix_sort import *
 from .gnome_sort import *
 from .cocktail_shaker_sort import *
+from .sort_colors import *
+from .wiggle_sort import *
+from .meeting_rooms import *
