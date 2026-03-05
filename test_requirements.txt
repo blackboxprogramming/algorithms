@@ -3,5 +3,7 @@ python-coveralls
 coverage
 nose
 pytest
+pytest-asyncio
+anyio[trio]
 tox
 black
