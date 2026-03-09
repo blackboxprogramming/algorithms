@@ -38,7 +38,8 @@ from algorithms.strings import (
     first_unique_char,
     repeat_substring,
     atbash,
-    knuth_morris_pratt
+    knuth_morris_pratt,
+    fizzbuzz, fizzbuzz_with_helper_func
 )
 
 import unittest
@@ -545,6 +546,28 @@ class TestKnuthMorrisPratt(unittest.TestCase):
         self.assertEqual([0, 1, 2, 3, 4], knuth_morris_pratt("aaaaaaa", "aaa"))
         self.assertEqual([0, 4], knuth_morris_pratt("abcdabc", "abc"))
         self.assertEqual([], knuth_morris_pratt("aabcdaab", "aba"))
+
+class TestFizzBuzz(unittest.TestCase):
+    """[summary]
+    Test for the file fizzbuzz.py
+
+    Arguments:
+        unittest {[type]} -- [description]
+    """
+    def test_fizzbuzz(self):
+        self.assertEqual([1, 2, 'Fizz', 4, 'Buzz', 'Fizz', 7, 8, 'Fizz',
+                          'Buzz', 11, 'Fizz', 13, 14, 'FizzBuzz'],
+                         fizzbuzz(15))
+        self.assertEqual([1, 2, 'Fizz', 4, 'Buzz'], fizzbuzz(5))
+
+    def test_fizzbuzz_with_helper_func(self):
+        self.assertEqual([1, 2, 'Fizz', 4, 'Buzz', 'Fizz', 7, 8, 'Fizz',
+                          'Buzz', 11, 'Fizz', 13, 14, 'FizzBuzz'],
+                         fizzbuzz_with_helper_func(15))
+
+    def test_fizzbuzz_invalid(self):
+        self.assertRaises(ValueError, fizzbuzz, 0)
+
 
 if __name__ == "__main__":
     unittest.main()

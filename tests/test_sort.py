@@ -16,7 +16,10 @@ from algorithms.sort import (
     radix_sort,
     gnome_sort,
     cocktail_shaker_sort,
-    top_sort, top_sort_recursive
+    top_sort, top_sort_recursive,
+    sort_colors,
+    wiggle_sort,
+    can_attend_meetings,
 )
 
 import unittest
@@ -117,6 +120,48 @@ class TestTopSort(unittest.TestCase):
         self.assertTrue(res.index('g') < res.index('e'))
         res = top_sort(self.depGraph)
         self.assertTrue(res.index('g') < res.index('e'))
+
+
+class TestSortColors(unittest.TestCase):
+    def test_sort_colors(self):
+        nums = [2, 0, 2, 1, 1, 0]
+        sort_colors(nums)
+        self.assertEqual([0, 0, 1, 1, 2, 2], nums)
+
+        nums = [0]
+        sort_colors(nums)
+        self.assertEqual([0], nums)
+
+        nums = [1]
+        sort_colors(nums)
+        self.assertEqual([1], nums)
+
+
+class TestWiggleSort(unittest.TestCase):
+    def test_wiggle_sort(self):
+        nums = [3, 5, 2, 1, 6, 4]
+        wiggle_sort(nums)
+        for i in range(1, len(nums)):
+            if i % 2 == 1:
+                self.assertLess(nums[i - 1], nums[i])
+            else:
+                self.assertGreater(nums[i - 1], nums[i])
+
+
+class TestMeetingRooms(unittest.TestCase):
+    class Interval:
+        def __init__(self, start, end):
+            self.start = start
+            self.end = end
+
+    def test_can_attend_meetings(self):
+        intervals = [self.Interval(0, 30), self.Interval(5, 10),
+                     self.Interval(15, 20)]
+        self.assertFalse(can_attend_meetings(intervals))
+
+        intervals = [self.Interval(0, 5), self.Interval(10, 15),
+                     self.Interval(15, 20)]
+        self.assertTrue(can_attend_meetings(intervals))
 
 
 if __name__ == "__main__":
